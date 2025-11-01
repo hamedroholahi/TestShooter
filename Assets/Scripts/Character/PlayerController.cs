@@ -68,19 +68,29 @@ public class PlayerController : MonoBehaviour
     void HandleShooting()
     {
         if (inputHandler.IsShooting() && currentWeapon != null)
-            currentWeapon.Fire();
+            Shoot();
     }
 
     void HandleChangeGun()
     {
         if (inputHandler.IsChangeGun())
         {
-            currentWeapon.SetActive(false);
-            
-            currentWeaponIndex = currentWeaponIndex < weapons.Count - 1 ? currentWeaponIndex+1 : 0;
-            currentWeapon = weapons[currentWeaponIndex];
-            currentWeapon.SetActive(true);
+            ChangeGun();
         }
+    }
+
+    public void Shoot()
+    {
+        currentWeapon.Fire();
+    }
+
+    public void ChangeGun()
+    {
+        currentWeapon.SetActive(false);
+            
+        currentWeaponIndex = currentWeaponIndex < weapons.Count - 1 ? currentWeaponIndex+1 : 0;
+        currentWeapon = weapons[currentWeaponIndex];
+        currentWeapon.SetActive(true);
     }
 
     void CalculateCameraBounds()
